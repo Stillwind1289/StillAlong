@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" shape-rendering="crispEdges">
+  <rect width="64" height="64" rx="12" fill="#181F3D" />
+  <rect x="4" y="4" width="56" height="56" rx="8" fill="#232D58" stroke="#F7F1E3" stroke-width="2" />
+  <!-- Cozy window moon & lamp pixel icon -->
+  <rect x="14" y="14" width="36" height="24" fill="#151C38" stroke="#7A523B" stroke-width="2" />
+  <rect x="38" y="18" width="6" height="6" fill="#FFE394" />
+  <rect x="40" y="18" width="4" height="4" fill="#151C38" />
+  <rect x="20" y="20" width="2" height="2" fill="#FFF7D6" />
+  <rect x="28" y="26" width="2" height="2" fill="#A9C3F2" />
+  <!-- Warm study desk & open book -->
+  <rect x="12" y="40" width="40" height="10" fill="#8C5B3D" />
+  <rect x="12" y="38" width="40" height="3" fill="#B57B54" />
+  <rect x="24" y="34" width="16" height="6" fill="#FBF6EA" />
+  <rect x="31" y="34" width="2" height="6" fill="#B6A28B" />
+  <!-- Tiny star badge -->
+  <rect x="46" y="10" width="4" height="4" fill="#F2C97D" />
+</svg>

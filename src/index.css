@@ -1,0 +1,237 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-gba: 'Silkscreen', 'Pixelify Sans', monospace;
+    --font-display: 'Pixelify Sans', sans-serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #11152A;
+    color: #2A2233;
+    overflow-x: hidden;
+  }
+}
+
+.font-gba {
+  font-family: var(--font-gba);
+}
+
+.font-pixel {
+  font-family: var(--font-display);
+}
+
+.font-mono-tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* GBA RPG Window Frame: Warm midnight-indigo outer border with subtle walnut trim */
+.rpg-frame {
+  background-color: #161A36;
+  border: 3px solid #352728;
+  box-shadow:
+    inset 0 0 0 2px #9AA2C8,
+    0 8px 0 #0A0D1E,
+    0 14px 32px rgba(6, 8, 18, 0.72);
+}
+
+/* Warm Walnut Frame variant for Study Command Bar & Playground trim */
+.rpg-walnut {
+  background-color: #4A2F24;
+  color: #FBF5E8;
+  border: 3px solid #2A1914;
+  box-shadow:
+    inset 0 2px 0 #7C533D,
+    inset 0 -3px 0 #331F17,
+    0 5px 0 #0D0F21;
+}
+
+/* Cream-and-brown RPG dialog box */
+.rpg-dialog {
+  background-color: #FBF6EA;
+  color: #3B2920;
+  border: 3px solid #3A251D;
+  box-shadow:
+    inset 0 0 0 2px #FFFFFF,
+    inset 0 -3px 0 0 #E4D0B5,
+    0 4px 0 #141933;
+}
+
+/* Soft parchment-slate GBA side bezel */
+.rpg-bezel {
+  background-color: #D7D1C9;
+  color: #2B2130;
+  border: 3px solid #35231D;
+  box-shadow:
+    inset 0 0 0 2px #F2ECE2,
+    inset 0 -3px 0 0 #B5AA9B,
+    0 6px 0 #10142A;
+}
+
+.rpg-inner-card {
+  background-color: #FBF7EE;
+  color: #36261E;
+  border: 2px solid #4A3126;
+  box-shadow:
+    inset 0 0 0 2px #FFFFFF,
+    inset 0 -2px 0 0 #E5D4BD;
+}
+
+/* GBA Plate Header */
+.rpg-plate {
+  background-color: #F8F1E3;
+  color: #2D2229;
+  border: 2px solid #3D2820;
+  box-shadow:
+    inset 0 0 0 2px #FFFFFF,
+    0 3px 0 #131730;
+}
+
+/* Interactive GBA RPG Buttons */
+.rpg-btn-cream {
+  background-color: #EFE8DB;
+  color: #2D2224;
+  border: 2px solid #3D2820;
+  box-shadow:
+    inset 0 2px 0 #FFFFFF,
+    inset 0 -2px 0 #C7B9A5,
+    0 2px 0 #14172E;
+  transition: transform 80ms ease, background-color 110ms ease;
+}
+
+.rpg-btn-cream:hover:not(:disabled) {
+  background-color: #F7F2E9;
+}
+
+.rpg-btn-cream:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: inset 0 2px 0 #C7B9A5;
+}
+
+.rpg-btn-amber {
+  background-color: #F2BE6F;
+  color: #362116;
+  border: 2px solid #3B251B;
+  box-shadow:
+    inset 0 2px 0 #FFE3A8,
+    inset 0 -2px 0 #C4893B,
+    0 2px 0 #14172E;
+  transition: transform 80ms ease, background-color 110ms ease;
+}
+
+.rpg-btn-amber:hover:not(:disabled) {
+  background-color: #F7CB85;
+}
+
+.rpg-btn-amber:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: inset 0 2px 0 #C4893B;
+}
+
+/* Terracotta / Muted Red primary study CTA */
+.rpg-btn-rose {
+  background-color: #BA5F54;
+  color: #FFF8F0;
+  border: 2px solid #3B1E1B;
+  box-shadow:
+    inset 0 2px 0 #D8877C,
+    inset 0 -2px 0 #8A3F36,
+    0 2px 0 #14172E;
+  transition: transform 80ms ease, background-color 110ms ease;
+}
+
+.rpg-btn-rose:hover:not(:disabled) {
+  background-color: #C96C61;
+}
+
+.rpg-btn-rose:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: inset 0 2px 0 #8A3F36;
+}
+
+.rpg-btn-blue {
+  background-color: #3E549A;
+  color: #FFFDF8;
+  border: 2px solid #1E274E;
+  box-shadow:
+    inset 0 2px 0 #667EC9,
+    inset 0 -2px 0 #293A73,
+    0 2px 0 #12162C;
+  transition: transform 80ms ease, background-color 110ms ease;
+}
+
+.rpg-btn-blue:hover:not(:disabled) {
+  background-color: #4C64AE;
+}
+
+.rpg-btn-blue:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: inset 0 2px 0 #293A73;
+}
+
+/* Exact power-of-two CSS steps() animations for 8x4 (160x176 cell) Girl Sprite Sheet */
+@keyframes girl-row0-left {
+  from { transform: translate3d(0%, 0%, 0); }
+  to   { transform: translate3d(-50%, 0%, 0); }
+}
+
+@keyframes girl-row0-blink {
+  from { transform: translate3d(-50%, 0%, 0); }
+  to   { transform: translate3d(-87.5%, 0%, 0); }
+}
+
+@keyframes girl-row1-left {
+  from { transform: translate3d(0%, -25%, 0); }
+  to   { transform: translate3d(-50%, -25%, 0); }
+}
+
+@keyframes girl-row1-right {
+  from { transform: translate3d(-50%, -25%, 0); }
+  to   { transform: translate3d(-100%, -25%, 0); }
+}
+
+@keyframes girl-row2-left {
+  from { transform: translate3d(0%, -50%, 0); }
+  to   { transform: translate3d(-50%, -50%, 0); }
+}
+
+@keyframes girl-row2-right {
+  from { transform: translate3d(-50%, -50%, 0); }
+  to   { transform: translate3d(-100%, -50%, 0); }
+}
+
+@keyframes girl-row3-left {
+  from { transform: translate3d(0%, -75%, 0); }
+  to   { transform: translate3d(-50%, -75%, 0); }
+}
+
+@keyframes girl-row3-right {
+  from { transform: translate3d(-50%, -75%, 0); }
+  to   { transform: translate3d(-100%, -75%, 0); }
+}
+
+.girl-anim-idle       { animation: girl-row0-left 1.1s steps(4, end) infinite; }
+.girl-anim-blink      { animation: girl-row0-blink 0.54s steps(3, end) infinite; }
+.girl-anim-reading    { animation: girl-row1-left 1.2s steps(4, end) infinite; }
+.girl-anim-writing    { animation: girl-row1-right 1.1s steps(4, end) infinite; }
+.girl-anim-walk-down  { animation: girl-row2-left 0.6s steps(4, end) infinite; }
+.girl-anim-walk-up    { animation: girl-row2-right 0.6s steps(4, end) infinite; }
+.girl-anim-walk-left  { animation: girl-row3-left 0.6s steps(4, end) infinite; }
+.girl-anim-walk-right { animation: girl-row3-right 0.6s steps(4, end) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
