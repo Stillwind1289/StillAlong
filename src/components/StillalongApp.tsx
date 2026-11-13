@@ -392,11 +392,8 @@ export const StillalongApp: React.FC<StillalongAppProps> = ({ onNavigateRoute })
     const rect = canvas.getBoundingClientRect();
     const vx = ((e.clientX - rect.left) / rect.width) * DESK_W;
     const vy = ((e.clientY - rect.top) / rect.height) * DESK_H;
-    const hitKitty =
-      prefs.characterId === 'male'
-        ? vx >= 506 && vx <= 622 && vy >= 325 && vy <= 450
-        : vx >= 462 && vx <= 556 && vy >= 280 && vy <= 398;
-    if (hitKitty) {
+    // White kitty sits on the right corner of the centered 384x352 desk sprite (x=462..556, y=280..398)
+    if (vx >= 462 && vx <= 556 && vy >= 280 && vy <= 398) {
       catHappyRef.current = 80;
       if (settings.chimeEnabled) cozyAudio.playChime('click');
       setFocusDialogue('Kitty seems glad to have us both studying together.');

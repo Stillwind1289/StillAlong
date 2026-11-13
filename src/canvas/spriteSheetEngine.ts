@@ -86,43 +86,49 @@ export const BOY_SHEET_FRAMES = {
   ],
 };
 
-// Uniform 5x5 grid cell dimensions in /assets/sprites/milo-desk-spritesheet.png (960x1000)
-const MILO_CELL_W = 192;
-const MILO_CELL_H = 200;
-const miloCell = (col: number, row: number): SpriteRect => ({
-  x: col * MILO_CELL_W,
-  y: row * MILO_CELL_H,
-  w: MILO_CELL_W,
-  h: MILO_CELL_H,
-});
-
-export const MILO_DESK_FRAMES = {
-  idle: [miloCell(0, 0), miloCell(1, 0), miloCell(4, 2)],
-  blink: [miloCell(2, 0), miloCell(3, 0)],
-  wave: miloCell(3, 4),
-  studyWrite: [miloCell(0, 1), miloCell(1, 1), miloCell(2, 1), miloCell(3, 1), miloCell(4, 1)],
-  studyThink: [miloCell(1, 2), miloCell(2, 2), miloCell(1, 3), miloCell(2, 3)],
-  breakNap: [miloCell(4, 3), miloCell(3, 2), miloCell(4, 2), miloCell(0, 4)],
-};
-
-// Uniform 3x7 grid cell dimensions in /assets/sprites/white-kitty-spritesheet.png (360x840)
-const KITTY_CELL_W = 120;
-const KITTY_CELL_H = 120;
-const kittyCell = (col: number, row: number): SpriteRect => ({
-  x: col * KITTY_CELL_W,
-  y: row * KITTY_CELL_H,
-  w: KITTY_CELL_W,
-  h: KITTY_CELL_H,
-});
-
-export const WHITE_KITTY_FRAMES = {
-  sit: [kittyCell(0, 0), kittyCell(2, 5)],
-  blink: kittyCell(1, 0),
-  happy: kittyCell(2, 0),
-  turnLook: [kittyCell(0, 1), kittyCell(1, 1)],
-  sleepLoaf: [kittyCell(0, 4), kittyCell(0, 5), kittyCell(1, 5)],
-  alertLoaf: [kittyCell(1, 4), kittyCell(2, 4)],
-  surprised: kittyCell(2, 6),
+// Exact sprite coordinates measured from boy-cat-spritesheet-reference_d48fbdff.png (1536x1024)
+export const BOY_CAT_FRAMES = {
+  deskStudy: [
+    { x: 656, y: 17, w: 127, h: 153 },
+    { x: 787, y: 18, w: 125, h: 151 },
+    { x: 916, y: 18, w: 125, h: 151 },
+    { x: 1045, y: 17, w: 125, h: 152 }, // blink
+    { x: 1181, y: 17, w: 129, h: 151 },
+    { x: 1337, y: 17, w: 128, h: 151 },
+    { x: 655, y: 216, w: 127, h: 149 },
+    { x: 789, y: 219, w: 124, h: 145 },
+    { x: 922, y: 220, w: 123, h: 145 },
+    { x: 1053, y: 220, w: 124, h: 144 }, // blink
+    { x: 1186, y: 222, w: 127, h: 141 },
+    { x: 1337, y: 219, w: 128, h: 144 },
+  ],
+  deskBreakStretch: [
+    { x: 653, y: 400, w: 130, h: 148 },
+    { x: 1057, y: 402, w: 126, h: 148 },
+    { x: 1197, y: 401, w: 128, h: 160 },
+    { x: 1345, y: 399, w: 139, h: 162 },
+  ],
+  catSit: [
+    { x: 56, y: 592, w: 121, h: 122 },
+    { x: 195, y: 596, w: 122, h: 118 },
+    { x: 332, y: 596, w: 123, h: 118 },
+    { x: 478, y: 603, w: 134, h: 123 },
+    { x: 619, y: 606, w: 124, h: 107 }, // blink
+  ],
+  catSleep: [
+    { x: 768, y: 610, w: 147, h: 95 },
+    { x: 939, y: 618, w: 146, h: 94 },
+    { x: 1109, y: 625, w: 132, h: 90 },
+    { x: 1282, y: 622, w: 135, h: 93 }, // with Z
+  ],
+  catHappy: [
+    { x: 100, y: 875, w: 109, h: 136 },
+    { x: 282, y: 875, w: 112, h: 136 },
+    { x: 461, y: 875, w: 112, h: 136 },
+    { x: 815, y: 875, w: 119, h: 136 },
+    { x: 973, y: 875, w: 133, h: 136 }, // sparkles
+    { x: 1146, y: 875, w: 131, h: 136 }, // heart
+  ],
 };
 
 // Uniform 8x6 grid cell dimensions in /assets/sprites/focus-desk-spritesheet.png (1536x1056)
@@ -136,6 +142,20 @@ const focusCell = (col: number, row: number): SpriteRect => ({
 });
 
 export const FOCUS_DESK_FRAMES = {
+  male: {
+    study: [
+      focusCell(0, 0),
+      focusCell(1, 0),
+      focusCell(3, 0),
+      focusCell(4, 0),
+      focusCell(6, 0),
+      focusCell(7, 0),
+    ],
+    blink: focusCell(2, 0),
+    softBlink: focusCell(5, 0),
+    idle: [focusCell(0, 0), focusCell(4, 0)],
+    breakRest: [focusCell(0, 1), focusCell(2, 1), focusCell(5, 1), focusCell(7, 1)],
+  },
   female: {
     study: [
       focusCell(0, 3),
@@ -156,9 +176,8 @@ export interface LoadedPixelAssets {
   roomImg: HTMLImageElement;
   girlSheetImg: HTMLImageElement;
   boySheetImg: HTMLImageElement;
+  boyCatImg: HTMLImageElement;
   focusDeskImg: HTMLImageElement;
-  miloDeskImg: HTMLImageElement;
-  whiteKittyImg: HTMLImageElement;
 }
 
 export function loadPixelAssets(): Promise<LoadedPixelAssets> {
@@ -174,16 +193,14 @@ export function loadPixelAssets(): Promise<LoadedPixelAssets> {
     loadOne('/assets/aistudio/room_a76d0dd3.png'),
     loadOne('/assets/sprites/girl-spritesheet-normalized.png'),
     loadOne('/assets/aistudio/boy-spritesheet-reference_fb44cbf3.png'),
+    loadOne('/assets/aistudio/boy-cat-spritesheet-reference_d48fbdff.png'),
     loadOne('/assets/sprites/focus-desk-spritesheet.png'),
-    loadOne('/assets/sprites/milo-desk-spritesheet.png'),
-    loadOne('/assets/sprites/white-kitty-spritesheet.png'),
-  ]).then(([roomImg, girlSheetImg, boySheetImg, focusDeskImg, miloDeskImg, whiteKittyImg]) => ({
+  ]).then(([roomImg, girlSheetImg, boySheetImg, boyCatImg, focusDeskImg]) => ({
     roomImg,
     girlSheetImg,
     boySheetImg,
+    boyCatImg,
     focusDeskImg,
-    miloDeskImg,
-    whiteKittyImg,
   }));
 }
 
@@ -494,27 +511,28 @@ export function drawRoomScene(
     ctx.fill();
   }
 
-  // 4. White Kitty on the checkered rug (uses new crisp 21-frame kitty sheet)
+  // 4. White Kitty on the checkered rug
   const catX = 448;
-  const catY = 308;
+  const catY = 306;
   ctx.fillStyle = 'rgba(22, 16, 26, 0.22)';
   ctx.fillRect(catX - 20, catY - 6, 40, 10);
 
   let catRect: SpriteRect;
   if (opts.catHappyTimer > 0) {
-    catRect = WHITE_KITTY_FRAMES.happy;
+    catRect = BOY_CAT_FRAMES.catHappy[5];
   } else if (opts.isStudying) {
-    catRect = WHITE_KITTY_FRAMES.sleepLoaf[Math.floor(frame / 34) % WHITE_KITTY_FRAMES.sleepLoaf.length];
+    const sleepIdx = Math.floor(frame / 28) % 2 === 0 ? 2 : 3;
+    catRect = BOY_CAT_FRAMES.catSleep[sleepIdx];
   } else {
     const blink = frame % 125 > 118;
-    const glance = frame % 210 > 188;
+    const earTwitch = frame % 190 > 180;
     catRect = blink
-      ? WHITE_KITTY_FRAMES.blink
-      : glance
-        ? WHITE_KITTY_FRAMES.turnLook[0]
-        : WHITE_KITTY_FRAMES.sit[Math.floor(frame / 36) % WHITE_KITTY_FRAMES.sit.length];
+      ? BOY_CAT_FRAMES.catSit[4]
+      : earTwitch
+        ? BOY_CAT_FRAMES.catSit[3]
+        : BOY_CAT_FRAMES.catSit[Math.floor(frame / 18) % 3];
   }
-  drawSprite(ctx, assets.whiteKittyImg, catRect, catX, catY, 0.62);
+  drawSprite(ctx, assets.boyCatImg, catRect, catX, catY, 0.42);
 
   // 5. Top-Down Companion (Normalized height so walking NEVER shrinks!)
   const { walker, characterId } = opts;
@@ -665,132 +683,58 @@ export function drawWebcamFocusScene(
     drawPixelOval(centerX, 316, 136, 82, `rgba(255, 232, 174, ${glowAlpha.toFixed(3)})`);
   }
 
-  // --- LAYER 2: UNIFIED COMPANION DESK & WHITE KITTY ---
-  if (opts.characterId === 'male') {
-    const deskX = 340;
-    const deskY = 442;
+  // Soft grounded shadow directly beneath the companion's pixel wooden desk
+  drawPixelOval(centerX, 428, 166, 20, 'rgba(6, 7, 18, 0.58)');
+  drawPixelOval(centerX, 425, 148, 12, 'rgba(6, 7, 18, 0.42)');
 
-    // Grounded pixel shadows under Milo's desk & adjacent kitty
-    drawPixelOval(deskX, deskY - 8, 166, 18, 'rgba(6, 7, 18, 0.56)');
-    drawPixelOval(564, deskY - 10, 44, 12, 'rgba(6, 7, 18, 0.46)');
+  // --- LAYER 2: UNIFIED FOCUS SPRITE SHEET (COMPANION + DESK + OPEN NOTEBOOK + WHITE KITTY) ---
+  const deskSet = opts.characterId === 'male' ? FOCUS_DESK_FRAMES.male : FOCUS_DESK_FRAMES.female;
+  let deskRect: SpriteRect;
 
-    let miloRect: SpriteRect;
-    if (isBreak) {
-      miloRect =
-        MILO_DESK_FRAMES.breakNap[Math.floor(frame / 42) % MILO_DESK_FRAMES.breakNap.length];
-    } else if (isRunning) {
-      const blinkTick = frame % 120;
-      const thinkTick = frame % 280;
-      if (blinkTick > 114) {
-        miloRect = MILO_DESK_FRAMES.blink[0];
-      } else if (thinkTick > 250) {
-        miloRect = MILO_DESK_FRAMES.studyThink[Math.floor(frame / 24) % MILO_DESK_FRAMES.studyThink.length];
-      } else {
-        miloRect =
-          MILO_DESK_FRAMES.studyWrite[Math.floor(frame / 16) % MILO_DESK_FRAMES.studyWrite.length];
-      }
+  if (isBreak) {
+    // Gentle stretch / restful break cycle
+    deskRect = deskSet.breakRest[Math.floor(frame / 34) % deskSet.breakRest.length];
+  } else if (isRunning) {
+    // Natural active study loop with subtle blinking & soft glances down at notebook
+    const blinkTick = frame % 124;
+    const glanceTick = frame % 256;
+    if (blinkTick > 118) {
+      deskRect = deskSet.blink;
+    } else if (glanceTick > 244) {
+      deskRect = deskSet.softBlink;
     } else {
-      const blinkTick = frame % 136;
-      const waveTick = frame % 300;
-      if (blinkTick > 129) {
-        miloRect = MILO_DESK_FRAMES.blink[1];
-      } else if (waveTick > 272) {
-        miloRect = MILO_DESK_FRAMES.wave;
-      } else {
-        miloRect = MILO_DESK_FRAMES.idle[Math.floor(frame / 46) % MILO_DESK_FRAMES.idle.length];
-      }
-    }
-
-    // Sharp 2x integer scale (192x200 -> 384x400)
-    drawSprite(ctx, assets.miloDeskImg, miloRect, deskX, deskY, 2);
-
-    // Independent White Kitty sitting / loafing beside Milo's desk
-    const kittyX = 564;
-    const kittyY = deskY - 4;
-    let kittyRect: SpriteRect;
-    if (opts.catHappyTimer > 0) {
-      kittyRect = WHITE_KITTY_FRAMES.happy;
-    } else if (isBreak) {
-      kittyRect =
-        frame % 140 > 132
-          ? WHITE_KITTY_FRAMES.blink
-          : WHITE_KITTY_FRAMES.sit[Math.floor(frame / 36) % WHITE_KITTY_FRAMES.sit.length];
-    } else if (isRunning && frame % 340 > 130) {
-      kittyRect =
-        WHITE_KITTY_FRAMES.sleepLoaf[Math.floor(frame / 38) % WHITE_KITTY_FRAMES.sleepLoaf.length];
-    } else {
-      const blink = frame % 116 > 109;
-      kittyRect = blink
-        ? WHITE_KITTY_FRAMES.blink
-        : WHITE_KITTY_FRAMES.sit[Math.floor(frame / 38) % WHITE_KITTY_FRAMES.sit.length];
-    }
-    drawSprite(ctx, assets.whiteKittyImg, kittyRect, kittyX, kittyY, 1);
-
-    if (opts.catHappyTimer > 0) {
-      const floatY = kittyY - 108 - Math.round((80 - opts.catHappyTimer) * 0.18);
-      const hx = kittyX - 7;
-      const hy = floatY;
-      p(hx + 2, hy, 4, 2, '#3B1E1B');
-      p(hx + 8, hy, 4, 2, '#3B1E1B');
-      p(hx, hy + 2, 14, 4, '#3B1E1B');
-      p(hx + 2, hy + 6, 10, 2, '#3B1E1B');
-      p(hx + 4, hy + 8, 6, 2, '#3B1E1B');
-      p(hx + 6, hy + 10, 2, 2, '#3B1E1B');
-
-      p(hx + 2, hy + 2, 4, 2, '#F47C7C');
-      p(hx + 8, hy + 2, 4, 2, '#F47C7C');
-      p(hx + 2, hy + 4, 10, 2, '#E25B5B');
-      p(hx + 4, hy + 6, 6, 2, '#E25B5B');
-      p(hx + 6, hy + 8, 2, 2, '#E25B5B');
-      p(hx + 3, hy + 2, 2, 2, '#FFD2CC');
+      deskRect = deskSet.study[Math.floor(frame / 18) % deskSet.study.length];
     }
   } else {
-    // Soft grounded shadow directly beneath Hana's pixel wooden desk
-    drawPixelOval(centerX, 428, 166, 20, 'rgba(6, 7, 18, 0.58)');
-    drawPixelOval(centerX, 425, 148, 12, 'rgba(6, 7, 18, 0.42)');
+    // Quiet ready/paused posture with slow natural blink
+    const blinkTick = frame % 140;
+    deskRect =
+      blinkTick > 133
+        ? deskSet.blink
+        : deskSet.idle[Math.floor(frame / 48) % deskSet.idle.length];
+  }
 
-    const deskSet = FOCUS_DESK_FRAMES.female;
-    let deskRect: SpriteRect;
+  // Exact 2x integer pixel scaling (192x176 -> 384x352) keeps every outline razor-sharp
+  drawSprite(ctx, assets.focusDeskImg, deskRect, centerX, 436, 2);
 
-    if (isBreak) {
-      deskRect = deskSet.breakRest[Math.floor(frame / 34) % deskSet.breakRest.length];
-    } else if (isRunning) {
-      const blinkTick = frame % 124;
-      const glanceTick = frame % 256;
-      if (blinkTick > 118) {
-        deskRect = deskSet.blink;
-      } else if (glanceTick > 244) {
-        deskRect = deskSet.softBlink;
-      } else {
-        deskRect = deskSet.study[Math.floor(frame / 18) % deskSet.study.length];
-      }
-    } else {
-      const blinkTick = frame % 140;
-      deskRect =
-        blinkTick > 133
-          ? deskSet.blink
-          : deskSet.idle[Math.floor(frame / 48) % deskSet.idle.length];
-    }
+  // Subtle pixel heart above the desk kitty when clicked/petted
+  if (opts.catHappyTimer > 0) {
+    const floatY = 266 - Math.round((80 - opts.catHappyTimer) * 0.18);
+    const hx = 502;
+    const hy = floatY;
+    // Crisp 7x6 pixel heart outline + warm coral fill
+    p(hx + 2, hy, 4, 2, '#3B1E1B');
+    p(hx + 8, hy, 4, 2, '#3B1E1B');
+    p(hx, hy + 2, 14, 4, '#3B1E1B');
+    p(hx + 2, hy + 6, 10, 2, '#3B1E1B');
+    p(hx + 4, hy + 8, 6, 2, '#3B1E1B');
+    p(hx + 6, hy + 10, 2, 2, '#3B1E1B');
 
-    drawSprite(ctx, assets.focusDeskImg, deskRect, centerX, 436, 2);
-
-    if (opts.catHappyTimer > 0) {
-      const floatY = 266 - Math.round((80 - opts.catHappyTimer) * 0.18);
-      const hx = 502;
-      const hy = floatY;
-      p(hx + 2, hy, 4, 2, '#3B1E1B');
-      p(hx + 8, hy, 4, 2, '#3B1E1B');
-      p(hx, hy + 2, 14, 4, '#3B1E1B');
-      p(hx + 2, hy + 6, 10, 2, '#3B1E1B');
-      p(hx + 4, hy + 8, 6, 2, '#3B1E1B');
-      p(hx + 6, hy + 10, 2, 2, '#3B1E1B');
-
-      p(hx + 2, hy + 2, 4, 2, '#F47C7C');
-      p(hx + 8, hy + 2, 4, 2, '#F47C7C');
-      p(hx + 2, hy + 4, 10, 2, '#E25B5B');
-      p(hx + 4, hy + 6, 6, 2, '#E25B5B');
-      p(hx + 6, hy + 8, 2, 2, '#E25B5B');
-      p(hx + 3, hy + 2, 2, 2, '#FFD2CC');
-    }
+    p(hx + 2, hy + 2, 4, 2, '#F47C7C');
+    p(hx + 8, hy + 2, 4, 2, '#F47C7C');
+    p(hx + 2, hy + 4, 10, 2, '#E25B5B');
+    p(hx + 4, hy + 6, 6, 2, '#E25B5B');
+    p(hx + 6, hy + 8, 2, 2, '#E25B5B');
+    p(hx + 3, hy + 2, 2, 2, '#FFD2CC');
   }
 }
