@@ -1,0 +1,21 @@
+{
+  "name": "stillalong",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-11-13",
+  // Preserve any additional dashboard-configured non-secret vars; keep
+  // LEMONSQUEEZY_API_KEY and LEMONSQUEEZY_WEBHOOK_SECRET as remote Cloudflare secrets only.
+  "keep_vars": true,
+  "vars": {
+    "LEMONSQUEEZY_STORE_ID": "470038",
+    "LEMONSQUEEZY_VARIANT_ID": "2374786",
+    "PUBLIC_APP_URL": "https://stillalong.xyz"
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": [
+      "/api/*"
+    ]
+  }
+}
