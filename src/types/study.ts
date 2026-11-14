@@ -1,7 +1,6 @@
-export type RoutePath = '/' | '/app' | '/privacy' | '/terms';
+export type RoutePath = '/' | '/app' | '/about' | '/privacy' | '/terms';
 
 export type AppScreen =
-  | 'welcome'
   | 'room'
   | 'focus'
   | 'history'

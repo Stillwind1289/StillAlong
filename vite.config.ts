@@ -52,6 +52,20 @@ export default defineConfig(() => {
         },
         workbox: {
           globPatterns: ['**/*.{js,css,html,ico,png,svg,woff,woff2}'],
+          globIgnores: [
+            'assets/aistudio/**',
+            'assets/sprites/frames/**',
+            'assets/sprites/focus-desk-spritesheet.png',
+            'assets/sprites/milo-desk-spritesheet.png',
+            'assets/sprites/girl-spritesheet-normalized.png',
+            'assets/sprites/white-kitty-spritesheet.png',
+            'assets/sprites/boy_character.png',
+            'assets/sprites/cat_character.png',
+            'assets/sprites/girl_character.png',
+            'assets/sprites/focus-books-prop.png',
+            'assets/sprites/focus-locked-companions.png',
+            'assets/sprites/study_desk.png',
+          ],
           navigateFallbackDenylist: [
             /^\/api\//,
             /^\/llms.*\.txt$/,

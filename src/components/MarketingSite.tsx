@@ -140,6 +140,7 @@ export const MarketingSite: React.FC<MarketingSiteProps> = ({ onNavigateRoute })
   const heroCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const playgroundCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const [assets, setAssets] = useState<LoadedPixelAssets | null>(null);
+  const [assetError, setAssetError] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Interactive Playground Demo State (isolated from real user localStorage!)
@@ -183,15 +184,30 @@ export const MarketingSite: React.FC<MarketingSiteProps> = ({ onNavigateRoute })
   const [contactSubmitted, setContactSubmitted] = useState(false);
   const [contactMailtoHref, setContactMailtoHref] = useState('mailto:hello@stillalong.xyz');
 
+  const reloadAssets = () => {
+    setAssetError(false);
+    loadPixelAssets()
+      .then((loaded) => {
+        setAssets(loaded);
+        setAssetError(false);
+      })
+      .catch(() => setAssetError(true));
+  };
+
   useEffect(() => {
-    document.title = 'Stillalong — A Little Place to Stay Awhile';
+    document.title = 'About Stillalong — A Little Place to Stay Awhile';
     let mounted = true;
 
     loadPixelAssets()
       .then((loaded) => {
-        if (mounted) setAssets(loaded);
+        if (mounted) {
+          setAssets(loaded);
+          setAssetError(false);
+        }
       })
-      .catch(() => {});
+      .catch(() => {
+        if (mounted) setAssetError(true);
+      });
 
     fetch('/api/checkout')
       .then((res) => (res.ok ? res.json() : { configured: false }))
@@ -448,7 +464,7 @@ export const MarketingSite: React.FC<MarketingSiteProps> = ({ onNavigateRoute })
             href="/"
             onClick={(e) => {
               e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              onNavigateRoute('/');
             }}
             className="flex shrink-0 items-center gap-2 whitespace-nowrap text-[#F7F1E3]"
           >
@@ -486,6 +502,13 @@ export const MarketingSite: React.FC<MarketingSiteProps> = ({ onNavigateRoute })
           </nav>
 
           <div className="flex shrink-0 items-center gap-2">
+            <button
+              type="button"
+              onClick={() => onNavigateRoute('/')}
+              className="rpg-btn-cream hidden min-h-[42px] shrink-0 whitespace-nowrap rounded px-3.5 py-2 text-xs font-bold sm:inline-flex sm:items-center"
+            >
+              Study Room
+            </button>
             <button
               type="button"
               onClick={() => onNavigateRoute('/app')}
@@ -598,7 +621,7 @@ export const MarketingSite: React.FC<MarketingSiteProps> = ({ onNavigateRoute })
             </div>
 
             <div className="flex justify-center lg:col-span-6">
-              <div className="rpg-frame w-full max-w-[460px] rounded-lg p-2.5">
+              <div className="rpg-frame relative w-full max-w-[460px] overflow-hidden rounded-lg p-2.5">
                 <canvas
                   ref={heroCanvasRef}
                   width={ROOM_W}
@@ -606,6 +629,22 @@ export const MarketingSite: React.FC<MarketingSiteProps> = ({ onNavigateRoute })
                   className="pixelated block aspect-[640/614] w-full rounded"
                   aria-label="Live preview of Stillalong pixel-art bedroom with Hana and Mochi"
                 />
+                {!assets && (
+                  <div className="absolute inset-2.5 flex flex-col items-center justify-center gap-3 rounded bg-[#14182D]/90 p-4 text-center">
+                    <p className="font-gba text-xs text-[#F2BE6F]">
+                      {assetError ? 'COULD NOT LOAD PIXEL ART' : 'LOADING PIXEL ROOM...'}
+                    </p>
+                    {assetError && (
+                      <button
+                        type="button"
+                        onClick={reloadAssets}
+                        className="rpg-btn-amber min-h-[40px] rounded px-4 py-1.5 text-xs font-bold"
+                      >
+                        Retry loading art
+                      </button>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -646,6 +685,22 @@ export const MarketingSite: React.FC<MarketingSiteProps> = ({ onNavigateRoute })
                     }`}
                     aria-label="Interactive Stillalong Demo Playground"
                   />
+                  {!assets && (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#14182D]/90 p-4 text-center">
+                      <p className="font-gba text-xs text-[#F2BE6F]">
+                        {assetError ? 'COULD NOT LOAD PLAYGROUND' : 'LOADING PIXEL PLAYGROUND...'}
+                      </p>
+                      {assetError && (
+                        <button
+                          type="button"
+                          onClick={reloadAssets}
+                          className="rpg-btn-amber min-h-[40px] rounded px-4 py-1.5 text-xs font-bold"
+                        >
+                          Retry loading art
+                        </button>
+                      )}
+                    </div>
+                  )}
                   <div className="font-gba pointer-events-none absolute top-3 left-3 rounded border border-[#3D2820] bg-[#FFF8EB] px-2.5 py-1 text-[10px] font-bold text-[#2D2229]">
                     DEMO MODE · {demoView === 'room' ? 'BEDROOM VIEW' : 'DESK FOCUS VIEW'}
                   </div>
@@ -1220,9 +1275,13 @@ export const MarketingSite: React.FC<MarketingSiteProps> = ({ onNavigateRoute })
             </p>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="hover:text-[#F7F1E3]">
-                  Home
-                </a>
+                <button
+                  type="button"
+                  onClick={() => onNavigateRoute('/')}
+                  className="hover:text-[#F7F1E3]"
+                >
+                  Study Room (Home)
+                </button>
               </li>
               <li>
                 <a href="#playground" className="hover:text-[#F7F1E3]">
@@ -1253,7 +1312,7 @@ export const MarketingSite: React.FC<MarketingSiteProps> = ({ onNavigateRoute })
                   onClick={() => onNavigateRoute('/app')}
                   className="hover:text-[#F7F1E3]"
                 >
-                  Open Study Room
+                  Open Focus Desk
                 </button>
               </li>
               <li>

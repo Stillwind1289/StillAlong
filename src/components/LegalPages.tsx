@@ -19,15 +19,24 @@ export const LegalPage: React.FC<LegalPageProps> = ({ page, onNavigateRoute }) =
   return (
     <div className="min-h-screen bg-[#11152A] text-[#F7F1E3]">
       <header className="border-b border-[#28315C] bg-[#11152A]">
-        <div className="mx-auto flex max-w-4xl items-center justify-between gap-6 px-4 py-4 sm:px-6">
-          <button
-            type="button"
-            onClick={() => onNavigateRoute('/')}
-            className="flex min-h-[42px] items-center gap-2 text-xs font-semibold text-[#C9D2F0] hover:text-[#F7F1E3]"
-          >
-            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            <span>Back to Stillalong</span>
-          </button>
+        <div className="mx-auto flex max-w-4xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
+          <div className="flex items-center gap-4">
+            <button
+              type="button"
+              onClick={() => onNavigateRoute('/')}
+              className="flex min-h-[42px] items-center gap-2 text-xs font-semibold text-[#C9D2F0] hover:text-[#F7F1E3]"
+            >
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+              <span>Study Room</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => onNavigateRoute('/about')}
+              className="min-h-[42px] text-xs font-semibold text-[#F7CB85] hover:text-[#FFF9EC]"
+            >
+              About Stillalong
+            </button>
+          </div>
           <button
             type="button"
             onClick={() => onNavigateRoute('/app')}

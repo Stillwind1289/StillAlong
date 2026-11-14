@@ -65,6 +65,7 @@ import { GirlAnimationState, GirlSprite } from './GirlSprite';
 import { PWAInstallButton } from './PWAInstallButton';
 
 interface StillalongAppProps {
+  initialScreen?: 'room' | 'focus';
   onNavigateRoute: (route: RoutePath) => void;
 }
 
@@ -111,12 +112,20 @@ function formatDuration(totalMinutes: number): string {
   return m === 0 ? `${h}h` : `${h}h ${m}m`;
 }
 
-export const StillalongApp: React.FC<StillalongAppProps> = ({ onNavigateRoute }) => {
-  const [screen, setScreen] = useState<AppScreen>('welcome');
+export const StillalongApp: React.FC<StillalongAppProps> = ({
+  initialScreen = 'room',
+  onNavigateRoute,
+}) => {
+  const [screen, setScreen] = useState<AppScreen>(initialScreen);
   const [assets, setAssets] = useState<LoadedPixelAssets | null>(null);
+  const [assetError, setAssetError] = useState(false);
   const [prefs, setPrefs] = useState<AppPreferences>(() => loadPreferences());
   const [settings, setSettings] = useState<TimerSettings>(() => loadSettings());
   const [sessions, setSessions] = useState<StudySession[]>(() => loadSessions());
+
+  useEffect(() => {
+    setScreen(initialScreen);
+  }, [initialScreen]);
 
   const [roomDialogue, setRoomDialogue] = useState<string>(
     'The bedroom is quiet and the study desk is waiting for us.'
@@ -152,7 +161,6 @@ export const StillalongApp: React.FC<StillalongAppProps> = ({ onNavigateRoute })
   );
 
   // Canvas & animation refs
-  const welcomeCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const roomCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const deskCanvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -194,13 +202,30 @@ export const StillalongApp: React.FC<StillalongAppProps> = ({ onNavigateRoute })
     onPhaseMessage: handlePhaseMessage,
   });
 
+  const reloadAssets = React.useCallback(() => {
+    setAssetError(false);
+    return loadPixelAssets()
+      .then((loaded) => {
+        setAssets(loaded);
+        setAssetError(false);
+      })
+      .catch(() => {
+        setAssetError(true);
+      });
+  }, []);
+
   useEffect(() => {
     let mounted = true;
     loadPixelAssets()
       .then((loaded) => {
-        if (mounted) setAssets(loaded);
+        if (mounted) {
+          setAssets(loaded);
+          setAssetError(false);
+        }
       })
-      .catch(() => {});
+      .catch(() => {
+        if (mounted) setAssetError(true);
+      });
     return () => {
       mounted = false;
     };
@@ -274,29 +299,7 @@ export const StillalongApp: React.FC<StillalongAppProps> = ({ onNavigateRoute })
 
       const cur = renderStateRef.current;
 
-      if (cur.screen === 'welcome' && welcomeCanvasRef.current) {
-        const ctx = welcomeCanvasRef.current.getContext('2d');
-        if (ctx) {
-          drawRoomScene(ctx, assets, frameRef.current, {
-            walker: {
-              x: 288,
-              y: 362,
-              targetX: 288,
-              targetY: 362,
-              facing: 'down',
-              moving: false,
-              waitTicks: 0,
-              manualMove: false,
-            },
-            hoveredZone: null,
-            isStudying: false,
-            atmosphere: cur.atmosphere,
-            lampOn: cur.lampOn,
-            showCat: cur.showCat,
-            kittyReactionTimer: kittyReactionTimerRef.current,
-          });
-        }
-      } else if (cur.screen === 'room' && roomCanvasRef.current) {
+      if (cur.screen === 'room' && roomCanvasRef.current) {
         const ctx = roomCanvasRef.current.getContext('2d');
         if (ctx) {
           walkerRef.current = stepRoomWalker(
@@ -410,7 +413,7 @@ export const StillalongApp: React.FC<StillalongAppProps> = ({ onNavigateRoute })
         waitTicks: 0,
       };
     } else if (id === 'desk') {
-      setScreen('focus');
+      startStudyingFromRoom();
     } else if (id === 'window') {
       const target = clampWalkPoint(318, 250);
       walkerRef.current = {
@@ -684,12 +687,12 @@ export const StillalongApp: React.FC<StillalongAppProps> = ({ onNavigateRoute })
         </button>
         <button
           type="button"
-          onClick={() => onNavigateRoute('/')}
+          onClick={() => onNavigateRoute('/about')}
           aria-label="About Stillalong"
-          className="rpg-btn-cream flex min-h-[44px] items-center gap-1.5 rounded px-3 py-1 text-xs font-bold"
+          className="rpg-btn-amber flex min-h-[44px] items-center gap-1.5 rounded px-3 py-1 text-xs font-bold"
         >
-          <Info className="h-3.5 w-3.5 text-[#3E549A]" aria-hidden="true" />
-          <span className="font-gba text-[10px]">about stillalong</span>
+          <Info className="h-3.5 w-3.5" aria-hidden="true" />
+          <span className="font-gba text-[10px]">About Stillalong</span>
         </button>
       </div>
     </header>
@@ -904,132 +907,11 @@ export const StillalongApp: React.FC<StillalongAppProps> = ({ onNavigateRoute })
       {renderSubjectPicker()}
       {renderSessionSummaryModal()}
 
-      {/* SCREEN 1 — WELCOME */}
-      {screen === 'welcome' && (
-        <main className="rpg-frame relative z-10 w-full max-w-5xl rounded-lg p-4 sm:p-6">
-          <header className="flex flex-wrap items-center justify-between gap-3 border-b border-[#2D335E] pb-4">
-            <div className="rpg-plate flex items-center gap-2 rounded px-3.5 py-1.5">
-              <Star className="h-4 w-4 fill-[#F2BE6F] text-[#3B251B]" aria-hidden="true" />
-              <span className="font-gba text-sm font-bold tracking-wider text-[#2D2229]">
-                STILLALONG
-              </span>
-            </div>
-
-            <p className="font-gba hidden text-xs tracking-widest text-[#C9D2F0] md:block">
-              A LITTLE PLACE TO STAY AWHILE.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-2">
-              <button
-                type="button"
-                onClick={() => onNavigateRoute('/')}
-                className="rpg-btn-cream flex min-h-[44px] items-center gap-2 rounded px-3.5 py-1.5 text-xs font-bold"
-              >
-                <Info className="h-3.5 w-3.5 text-[#3E549A]" aria-hidden="true" />
-                <span className="font-gba text-[11px]">About Stillalong</span>
-              </button>
-              <button
-                type="button"
-                onClick={cycleSoundscape}
-                className="rpg-plate flex min-h-[44px] items-center gap-2 rounded px-3 py-1.5 text-xs font-bold"
-              >
-                <Music className="h-3.5 w-3.5 text-[#3E549A]" aria-hidden="true" />
-                <span className="font-gba text-[11px]">
-                  {prefs.soundscape === 'off' ? 'sound off' : currentSoundLabel.toLowerCase()}
-                </span>
-              </button>
-            </div>
-          </header>
-
-          <div className="grid grid-cols-1 items-center gap-7 py-6 lg:grid-cols-12">
-            <div className="space-y-5 lg:col-span-6">
-              <p className="font-gba text-[11px] tracking-widest text-[#AEB9DF]">
-                COZY PIXEL STUDY COMPANION
-              </p>
-              <h1 className="font-pixel text-4xl leading-tight font-bold text-[#FFF9EC] sm:text-5xl">
-                Some things are better together.
-              </h1>
-              <p className="max-w-md text-base leading-relaxed text-[#D2DAF5]">
-                Step into a quiet lavender-and-wood pixel bedroom, stroll across the rug with{' '}
-                {activeChar.name} and {CAT_COMPANION.name}, and sit across the wooden study desk
-                while you focus.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-3 pt-1">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (settings.chimeEnabled) cozyAudio.playChime('click');
-                    setScreen('room');
-                  }}
-                  className="rpg-btn-amber flex min-h-[46px] items-center gap-2 rounded px-5 py-2.5 text-sm font-bold"
-                >
-                  <span className="font-pixel text-lg">Enter Room</span>
-                  <Play className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (settings.chimeEnabled) cozyAudio.playChime('click');
-                    setScreen('focus');
-                  }}
-                  className="rpg-btn-cream flex min-h-[46px] items-center gap-2 rounded px-4 py-2.5 text-xs font-bold"
-                >
-                  <span>Sit at Desk</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => onNavigateRoute('/')}
-                  className="rpg-btn-blue flex min-h-[46px] items-center gap-2 rounded px-4 py-2.5 text-xs font-bold"
-                >
-                  <Info className="h-3.5 w-3.5" aria-hidden="true" />
-                  <span>About Stillalong</span>
-                </button>
-              </div>
-            </div>
-
-            <div className="flex justify-center lg:col-span-6">
-              <div className="relative w-full max-w-[440px] overflow-hidden rounded border-2 border-[#4A3126] bg-[#14182D] p-1.5 shadow-[0_6px_0_#0D1021]">
-                <canvas
-                  ref={welcomeCanvasRef}
-                  width={ROOM_W}
-                  height={ROOM_H}
-                  className="pixelated block aspect-[640/614] w-full rounded-xs"
-                  aria-label="Animated preview of the cozy Stillalong bedroom"
-                />
-                <div className="font-gba absolute bottom-3.5 left-3.5 rounded border border-[#3D2820] bg-[#FFF8EB] px-2.5 py-1 text-[10px] font-bold text-[#2D2229]">
-                  {atmosphere.label.toUpperCase()} · {activeChar.name.toUpperCase()}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[#2D335E] pt-3 text-[11px] text-[#93A0CC]">
-            <button
-              type="button"
-              onClick={() => onNavigateRoute('/')}
-              className="rpg-plate flex min-h-[38px] items-center gap-1.5 rounded px-3 py-1 font-gba text-[10px] font-bold"
-            >
-              <Info className="h-3 w-3 text-[#3E549A]" aria-hidden="true" />
-              <span>ABOUT STILLALONG</span>
-            </button>
-            <span className="font-gba text-[#C9D2F0]">
-              {localClockText} · {atmosphere.label.toUpperCase()}
-            </span>
-            <span className="font-gba">CRAFTED BY VOLFNYRA</span>
-          </div>
-        </main>
-      )}
-
-      {/* SCREEN 2 — TOP-DOWN BEDROOM PLAYGROUND */}
+      {/* SCREEN 1 — MAIN INTERACTIVE BEDROOM (LANDING PAGE) */}
       {screen === 'room' && (
         <main className="rpg-frame relative z-10 w-full max-w-5xl rounded-lg p-3 sm:p-4">
           {renderGameNavStrip(
-            `${localClockText} · ${atmosphere.label.toUpperCase()}`,
-            'welcome',
-            'outside'
+            `STILLALONG · ${localClockText} · ${atmosphere.label.toUpperCase()}`
           )}
 
           <div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-12">
@@ -1048,6 +930,23 @@ export const StillalongApp: React.FC<StillalongAppProps> = ({ onNavigateRoute })
                   }`}
                   aria-label="Top-down pixel art bedroom"
                 />
+
+                {!assets && (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#14182D]/90 p-4 text-center">
+                    <p className="font-gba text-xs text-[#F2BE6F]">
+                      {assetError ? 'COULD NOT LOAD PIXEL ROOM' : 'ENTERING BEDROOM...'}
+                    </p>
+                    {assetError && (
+                      <button
+                        type="button"
+                        onClick={reloadAssets}
+                        className="rpg-btn-amber min-h-[40px] rounded px-4 py-1.5 text-xs font-bold"
+                      >
+                        Retry loading art
+                      </button>
+                    )}
+                  </div>
+                )}
 
                 {hoveredZone && (
                   <div className="rpg-plate pointer-events-none absolute top-3 left-3 rounded px-2.5 py-1 text-xs font-bold">
@@ -1145,11 +1044,50 @@ export const StillalongApp: React.FC<StillalongAppProps> = ({ onNavigateRoute })
                   className="rpg-btn-rose flex min-h-[48px] w-full items-center justify-center gap-2 rounded px-5 py-2 text-sm font-bold"
                 >
                   <Play className="h-4 w-4 fill-current" aria-hidden="true" />
-                  <span className="font-pixel text-xl">Sit at Desk &amp; Study</span>
+                  <span className="font-pixel text-xl">Start Studying</span>
                 </button>
               </div>
             </aside>
           </div>
+
+          <footer className="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-[#2D335E] pt-3 text-[11px] text-[#93A0CC]">
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={() => onNavigateRoute('/about')}
+                className="font-semibold text-[#F7CB85] hover:text-[#FFF9EC] hover:underline"
+              >
+                About Stillalong &amp; Pricing ($6.99)
+              </button>
+              <span aria-hidden="true">·</span>
+              <button
+                type="button"
+                onClick={() => onNavigateRoute('/privacy')}
+                className="hover:text-[#FFF9EC] hover:underline"
+              >
+                Privacy
+              </button>
+              <span aria-hidden="true">·</span>
+              <button
+                type="button"
+                onClick={() => onNavigateRoute('/terms')}
+                className="hover:text-[#FFF9EC] hover:underline"
+              >
+                Terms
+              </button>
+              <span aria-hidden="true">·</span>
+              <a
+                href="mailto:hello@stillalong.xyz"
+                className="font-mono-tabular hover:text-[#FFF9EC] hover:underline"
+              >
+                hello@stillalong.xyz
+              </a>
+            </div>
+            <div className="flex items-center gap-2">
+              <PWAInstallButton variant="rpg" />
+              <span className="font-gba text-[10px]">CRAFTED BY VOLFNYRA</span>
+            </div>
+          </footer>
         </main>
       )}
 
@@ -1215,6 +1153,22 @@ export const StillalongApp: React.FC<StillalongAppProps> = ({ onNavigateRoute })
                   className="pixelated block aspect-[768/528] w-full cursor-pointer select-none"
                   aria-label="Across-the-desk study view with Hana and Mochi"
                 />
+                {!assets && (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#14182D]/90 p-4 text-center">
+                    <p className="font-gba text-xs text-[#F2BE6F]">
+                      {assetError ? 'COULD NOT LOAD STUDY DESK' : 'SETTING UP STUDY DESK...'}
+                    </p>
+                    {assetError && (
+                      <button
+                        type="button"
+                        onClick={reloadAssets}
+                        className="rpg-btn-amber min-h-[40px] rounded px-4 py-1.5 text-xs font-bold"
+                      >
+                        Retry loading art
+                      </button>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
 
@@ -1920,10 +1874,10 @@ export const StillalongApp: React.FC<StillalongAppProps> = ({ onNavigateRoute })
                   </button>
                   <button
                     type="button"
-                    onClick={() => onNavigateRoute('/')}
+                    onClick={() => onNavigateRoute('/about')}
                     className="min-h-[36px] hover:underline"
                   >
-                    Website
+                    About &amp; Pricing
                   </button>
                 </div>
               </div>

@@ -12,6 +12,7 @@ function normalizeRoute(pathname: string): ResolvedView {
   const clean = pathname !== '/' ? pathname.replace(/\/+$/, '') : '/';
   if (clean === '/' || clean === '') return '/';
   if (clean === '/app' || clean.startsWith('/app/')) return '/app';
+  if (clean === '/about' || clean.startsWith('/about/')) return '/about';
   if (clean === '/privacy') return '/privacy';
   if (clean === '/terms') return '/terms';
   return 'not-found';
@@ -25,7 +26,7 @@ export default function App() {
   useEffect(() => {
     const onPopState = () => {
       const next = normalizeRoute(window.location.pathname);
-      if (next !== '/app') {
+      if (next !== '/' && next !== '/app') {
         cozyAudio.stopSoundscape();
       }
       setRoute(next);
@@ -35,7 +36,7 @@ export default function App() {
   }, []);
 
   const navigateRoute = useCallback((next: RoutePath) => {
-    if (next !== '/app') {
+    if (next !== '/' && next !== '/app') {
       cozyAudio.stopSoundscape();
     }
     if (window.location.pathname !== next) {
@@ -47,8 +48,13 @@ export default function App() {
 
   return (
     <>
-      {route === '/' && <MarketingSite onNavigateRoute={navigateRoute} />}
-      {route === '/app' && <StillalongApp onNavigateRoute={navigateRoute} />}
+      {(route === '/' || route === '/app') && (
+        <StillalongApp
+          initialScreen={route === '/app' ? 'focus' : 'room'}
+          onNavigateRoute={navigateRoute}
+        />
+      )}
+      {route === '/about' && <MarketingSite onNavigateRoute={navigateRoute} />}
       {route === '/privacy' && (
         <LegalPage page="privacy" onNavigateRoute={navigateRoute} />
       )}

@@ -115,11 +115,26 @@ export interface LoadedPixelAssets {
 }
 
 export function loadPixelAssets(): Promise<LoadedPixelAssets> {
-  const loadOne = (src: string) =>
+  const loadOne = (src: string, retriesLeft = 2): Promise<HTMLImageElement> =>
     new Promise<HTMLImageElement>((resolve, reject) => {
       const img = new Image();
-      img.onload = () => resolve(img);
-      img.onerror = reject;
+      img.decoding = 'async';
+      img.onload = () => {
+        if (typeof img.decode === 'function') {
+          img.decode().then(() => resolve(img), () => resolve(img));
+        } else {
+          resolve(img);
+        }
+      };
+      img.onerror = (err) => {
+        if (retriesLeft > 0) {
+          window.setTimeout(() => {
+            loadOne(src, retriesLeft - 1).then(resolve, reject);
+          }, 350);
+        } else {
+          reject(err);
+        }
+      };
       img.src = src;
     });
 
