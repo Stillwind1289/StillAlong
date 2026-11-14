@@ -17,18 +17,21 @@ export const DEFAULT_SETTINGS: TimerSettings = {
 
 export const DEFAULT_PREFS: AppPreferences = {
   characterId: 'female',
-  characterConfirmed: false,
+  characterConfirmed: true,
+  showCatCompanion: true,
   selectedSubject: 'General Study',
   timeOfDay: 'auto',
   soundscape: 'off',
   volume: 0.45,
   lampMode: 'auto',
   showDialogue: true,
+  poseMode: 'auto',
 };
 
 export function loadSessions(): StudySession[] {
   try {
-    const raw = localStorage.getItem(SESSIONS_KEY) || localStorage.getItem('stillalong_sessions_v1');
+    const raw =
+      localStorage.getItem(SESSIONS_KEY) || localStorage.getItem('stillalong_sessions_v1');
     if (!raw) return [];
     const parsed = JSON.parse(raw);
     return Array.isArray(parsed) ? parsed : [];
@@ -67,7 +70,8 @@ export function loadPreferences(): AppPreferences {
   try {
     const raw = localStorage.getItem(PREFS_KEY);
     if (!raw) return DEFAULT_PREFS;
-    return { ...DEFAULT_PREFS, ...JSON.parse(raw) };
+    const parsed = JSON.parse(raw);
+    return { ...DEFAULT_PREFS, ...parsed, characterId: 'female' };
   } catch {
     return DEFAULT_PREFS;
   }
@@ -95,6 +99,12 @@ export interface DailyBucket {
   sessions: number;
 }
 
+export interface SubjectBreakdownItem {
+  subject: string;
+  minutes: number;
+  sessions: number;
+}
+
 export function computeStudyStats(sessions: StudySession[]) {
   const focusSessions = sessions.filter((s) => s.phase === 'focus');
   const todayKey = toLocalDateKey(new Date());
@@ -104,6 +114,7 @@ export function computeStudyStats(sessions: StudySession[]) {
   let totalMinutes = 0;
 
   const byDay = new Map<string, { minutes: number; sessions: number }>();
+  const bySubject = new Map<string, { minutes: number; sessions: number }>();
 
   for (const s of focusSessions) {
     const key = toLocalDateKey(new Date(s.completedAt));
@@ -113,6 +124,14 @@ export function computeStudyStats(sessions: StudySession[]) {
       minutes: prev.minutes + s.durationMinutes,
       sessions: prev.sessions + 1,
     });
+
+    const subName = s.subject?.trim() || 'General Study';
+    const prevSub = bySubject.get(subName) ?? { minutes: 0, sessions: 0 };
+    bySubject.set(subName, {
+      minutes: prevSub.minutes + s.durationMinutes,
+      sessions: prevSub.sessions + 1,
+    });
+
     if (key === todayKey) {
       todayMinutes += s.durationMinutes;
       todayCount += 1;
@@ -135,6 +154,11 @@ export function computeStudyStats(sessions: StudySession[]) {
     });
   }
 
+  const subjectBreakdown: SubjectBreakdownItem[] = Array.from(bySubject.entries())
+    .map(([subject, data]) => ({ subject, ...data }))
+    .sort((a, b) => b.minutes - a.minutes)
+    .slice(0, 5);
+
   let streakDays = 0;
   const cursor = new Date();
   cursor.setHours(0, 0, 0, 0);
@@ -153,5 +177,6 @@ export function computeStudyStats(sessions: StudySession[]) {
     totalCount: focusSessions.length,
     streakDays,
     last7Days,
+    subjectBreakdown,
   };
 }

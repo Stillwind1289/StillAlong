@@ -2,13 +2,14 @@ export type RoutePath = '/' | '/app' | '/privacy' | '/terms';
 
 export type AppScreen =
   | 'welcome'
-  | 'character'
   | 'room'
   | 'focus'
   | 'history'
   | 'settings';
 
-export type CharacterId = 'male' | 'female';
+export type CharacterId = 'female';
+
+export type CompanionPoseMode = 'auto' | 'writing' | 'reading' | 'mug' | 'resting';
 
 export type TimeOfDayMode = 'auto' | 'morning' | 'afternoon' | 'evening' | 'night';
 export type ResolvedTimeOfDay = 'morning' | 'afternoon' | 'evening' | 'night';
@@ -27,21 +28,20 @@ export interface CharacterInfo {
   accentColor: string;
 }
 
-export const CHARACTERS: Record<CharacterId, CharacterInfo> = {
+export const CHARACTERS: Record<string, CharacterInfo> = {
   female: {
     id: 'female',
     name: 'Hana',
-    label: 'Stillalong Companion',
-    description: 'Navy pleated pinafore with cream collar, warm chestnut hair, quiet notebook notes.',
-    accentColor: '#A85D52',
+    label: 'Study Companion',
+    description:
+      'Dark messy bob, crisp white collared blouse, dark pleated skirt, quiet across-the-desk companion.',
+    accentColor: '#9C82B5',
   },
-  male: {
-    id: 'male',
-    name: 'Milo',
-    label: 'Alternate Companion',
-    description: 'Warm navy knit sweater, tousled chestnut hair, steady desk focus.',
-    accentColor: '#4F5D95',
-  },
+};
+
+export const CAT_COMPANION = {
+  name: 'Mochi',
+  description: 'Soft cream-white study cat who naps on the lavender rug and curls beside your desk.',
 };
 
 export const SUBJECT_PRESETS = [
@@ -79,10 +79,12 @@ export interface TimerSettings {
 export interface AppPreferences {
   characterId: CharacterId;
   characterConfirmed: boolean;
+  showCatCompanion: boolean;
   selectedSubject: string;
   timeOfDay: TimeOfDayMode;
   soundscape: SoundscapeMode;
   volume: number;
   lampMode: 'auto' | 'on' | 'off';
   showDialogue: boolean;
+  poseMode: CompanionPoseMode;
 }

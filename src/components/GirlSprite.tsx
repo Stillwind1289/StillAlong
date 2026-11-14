@@ -2,13 +2,11 @@ import React from 'react';
 
 export type GirlAnimationState =
   | 'idle'
-  | 'blink'
-  | 'reading'
   | 'writing'
-  | 'walkDown'
-  | 'walkUp'
-  | 'walkLeft'
-  | 'walkRight';
+  | 'reading'
+  | 'mug'
+  | 'happy'
+  | 'sleepy';
 
 interface GirlSpriteProps {
   animation?: GirlAnimationState;
@@ -17,38 +15,35 @@ interface GirlSpriteProps {
 }
 
 const ANIMATION_CLASS: Record<GirlAnimationState, string> = {
-  idle: 'girl-anim-idle',
-  blink: 'girl-anim-blink',
-  reading: 'girl-anim-reading',
-  writing: 'girl-anim-writing',
-  walkDown: 'girl-anim-walk-down',
-  walkUp: 'girl-anim-walk-up',
-  walkLeft: 'girl-anim-walk-left',
-  walkRight: 'girl-anim-walk-right',
+  idle: 'girl-sit-idle',
+  writing: 'girl-sit-writing',
+  reading: 'girl-sit-reading',
+  mug: 'girl-sit-mug',
+  happy: 'girl-sit-happy',
+  sleepy: 'girl-sit-sleepy',
 };
 
 /**
- * Fixed-cell CSS steps() sprite renderer backed verbatim by the normalized
- * 8x4 (160x176 cell) girl sprite sheet extracted from the user's artwork.
- * Container proportions never squash, stretch, or shrink across states.
+ * Fixed-cell sprite renderer backed by the normalized 5x4 (320x240 cell)
+ * /assets/sprites/girl-sit-sheet.png extracted from the user's artwork.
  */
 export const GirlSprite: React.FC<GirlSpriteProps> = ({
   animation = 'idle',
-  className = 'w-28',
+  className = 'w-20',
   alt = 'Stillalong study companion',
 }) => {
   return (
     <div
       role="img"
       aria-label={alt}
-      className={`relative aspect-[160/176] shrink-0 overflow-hidden select-none ${className}`}
+      className={`relative aspect-[320/240] shrink-0 overflow-hidden select-none ${className}`}
     >
       <img
-        src="/assets/sprites/girl-spritesheet-normalized.png"
+        src="/assets/sprites/girl-sit-sheet.png"
         alt=""
         aria-hidden="true"
         draggable={false}
-        className={`pixelated pointer-events-none block h-[400%] w-[800%] max-w-none will-change-transform ${ANIMATION_CLASS[animation]}`}
+        className={`pixelated pointer-events-none block h-[400%] w-[500%] max-w-none will-change-transform ${ANIMATION_CLASS[animation]}`}
       />
     </div>
   );

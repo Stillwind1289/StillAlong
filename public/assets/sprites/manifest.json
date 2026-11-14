@@ -1,0 +1,1199 @@
+{
+  "pixelScaleRule": "Native 1x art pixel per coordinate; upscale exclusively via integer nearest-neighbor (4x on 192x128 -> 768x512).",
+  "assets": {
+    "study_desk": {
+      "file": "/assets/sprites/study_desk.png",
+      "width": 148,
+      "height": 54,
+      "notes": "Static walnut desk with long tabletop, front panel, two long legs, and right-hand space reserved for cat. Zero cupboards, drawers, or props."
+    },
+    "boy_character": {
+      "file": "/assets/sprites/boy_character.png",
+      "sheetWidth": 576,
+      "sheetHeight": 384,
+      "frameWidth": 48,
+      "frameHeight": 48,
+      "gridCols": 12,
+      "gridRows": 8,
+      "totalFrames": 46,
+      "states": {
+        "idle": {
+          "row": 0,
+          "frameCount": 6,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 0,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/idle_00.png"
+            },
+            {
+              "index": 1,
+              "x": 48,
+              "y": 0,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/idle_01.png"
+            },
+            {
+              "index": 2,
+              "x": 96,
+              "y": 0,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/idle_02.png"
+            },
+            {
+              "index": 3,
+              "x": 144,
+              "y": 0,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/idle_03.png"
+            },
+            {
+              "index": 4,
+              "x": 192,
+              "y": 0,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/idle_04.png"
+            },
+            {
+              "index": 5,
+              "x": 240,
+              "y": 0,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/idle_05.png"
+            }
+          ]
+        },
+        "blink": {
+          "row": 1,
+          "frameCount": 4,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 48,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/blink_00.png"
+            },
+            {
+              "index": 1,
+              "x": 48,
+              "y": 48,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/blink_01.png"
+            },
+            {
+              "index": 2,
+              "x": 96,
+              "y": 48,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/blink_02.png"
+            },
+            {
+              "index": 3,
+              "x": 144,
+              "y": 48,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/blink_03.png"
+            }
+          ]
+        },
+        "writing": {
+          "row": 2,
+          "frameCount": 12,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/writing_00.png"
+            },
+            {
+              "index": 1,
+              "x": 48,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/writing_01.png"
+            },
+            {
+              "index": 2,
+              "x": 96,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/writing_02.png"
+            },
+            {
+              "index": 3,
+              "x": 144,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/writing_03.png"
+            },
+            {
+              "index": 4,
+              "x": 192,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/writing_04.png"
+            },
+            {
+              "index": 5,
+              "x": 240,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/writing_05.png"
+            },
+            {
+              "index": 6,
+              "x": 288,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/writing_06.png"
+            },
+            {
+              "index": 7,
+              "x": 336,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/writing_07.png"
+            },
+            {
+              "index": 8,
+              "x": 384,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/writing_08.png"
+            },
+            {
+              "index": 9,
+              "x": 432,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/writing_09.png"
+            },
+            {
+              "index": 10,
+              "x": 480,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/writing_10.png"
+            },
+            {
+              "index": 11,
+              "x": 528,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/writing_11.png"
+            }
+          ]
+        },
+        "lookingDown": {
+          "row": 3,
+          "frameCount": 4,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 144,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/lookingDown_00.png"
+            },
+            {
+              "index": 1,
+              "x": 48,
+              "y": 144,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/lookingDown_01.png"
+            },
+            {
+              "index": 2,
+              "x": 96,
+              "y": 144,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/lookingDown_02.png"
+            },
+            {
+              "index": 3,
+              "x": 144,
+              "y": 144,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/lookingDown_03.png"
+            }
+          ]
+        },
+        "lookingUp": {
+          "row": 4,
+          "frameCount": 4,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 192,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/lookingUp_00.png"
+            },
+            {
+              "index": 1,
+              "x": 48,
+              "y": 192,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/lookingUp_01.png"
+            },
+            {
+              "index": 2,
+              "x": 96,
+              "y": 192,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/lookingUp_02.png"
+            },
+            {
+              "index": 3,
+              "x": 144,
+              "y": 192,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/lookingUp_03.png"
+            }
+          ]
+        },
+        "thinking": {
+          "row": 5,
+          "frameCount": 6,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 240,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/thinking_00.png"
+            },
+            {
+              "index": 1,
+              "x": 48,
+              "y": 240,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/thinking_01.png"
+            },
+            {
+              "index": 2,
+              "x": 96,
+              "y": 240,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/thinking_02.png"
+            },
+            {
+              "index": 3,
+              "x": 144,
+              "y": 240,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/thinking_03.png"
+            },
+            {
+              "index": 4,
+              "x": 192,
+              "y": 240,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/thinking_04.png"
+            },
+            {
+              "index": 5,
+              "x": 240,
+              "y": 240,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/thinking_05.png"
+            }
+          ]
+        },
+        "headMovement": {
+          "row": 6,
+          "frameCount": 4,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 288,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/headMovement_00.png"
+            },
+            {
+              "index": 1,
+              "x": 48,
+              "y": 288,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/headMovement_01.png"
+            },
+            {
+              "index": 2,
+              "x": 96,
+              "y": 288,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/headMovement_02.png"
+            },
+            {
+              "index": 3,
+              "x": 144,
+              "y": 288,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/headMovement_03.png"
+            }
+          ]
+        },
+        "sleepy": {
+          "row": 7,
+          "frameCount": 6,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 336,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/sleepy_00.png"
+            },
+            {
+              "index": 1,
+              "x": 48,
+              "y": 336,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/sleepy_01.png"
+            },
+            {
+              "index": 2,
+              "x": 96,
+              "y": 336,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/sleepy_02.png"
+            },
+            {
+              "index": 3,
+              "x": 144,
+              "y": 336,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/sleepy_03.png"
+            },
+            {
+              "index": 4,
+              "x": 192,
+              "y": 336,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/sleepy_04.png"
+            },
+            {
+              "index": 5,
+              "x": 240,
+              "y": 336,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/boy/sleepy_05.png"
+            }
+          ]
+        }
+      }
+    },
+    "girl_character": {
+      "file": "/assets/sprites/girl_character.png",
+      "sheetWidth": 576,
+      "sheetHeight": 384,
+      "frameWidth": 48,
+      "frameHeight": 48,
+      "gridCols": 12,
+      "gridRows": 8,
+      "totalFrames": 46,
+      "states": {
+        "idle": {
+          "row": 0,
+          "frameCount": 6,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 0,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/idle_00.png"
+            },
+            {
+              "index": 1,
+              "x": 48,
+              "y": 0,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/idle_01.png"
+            },
+            {
+              "index": 2,
+              "x": 96,
+              "y": 0,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/idle_02.png"
+            },
+            {
+              "index": 3,
+              "x": 144,
+              "y": 0,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/idle_03.png"
+            },
+            {
+              "index": 4,
+              "x": 192,
+              "y": 0,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/idle_04.png"
+            },
+            {
+              "index": 5,
+              "x": 240,
+              "y": 0,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/idle_05.png"
+            }
+          ]
+        },
+        "blink": {
+          "row": 1,
+          "frameCount": 4,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 48,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/blink_00.png"
+            },
+            {
+              "index": 1,
+              "x": 48,
+              "y": 48,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/blink_01.png"
+            },
+            {
+              "index": 2,
+              "x": 96,
+              "y": 48,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/blink_02.png"
+            },
+            {
+              "index": 3,
+              "x": 144,
+              "y": 48,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/blink_03.png"
+            }
+          ]
+        },
+        "writing": {
+          "row": 2,
+          "frameCount": 12,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/writing_00.png"
+            },
+            {
+              "index": 1,
+              "x": 48,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/writing_01.png"
+            },
+            {
+              "index": 2,
+              "x": 96,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/writing_02.png"
+            },
+            {
+              "index": 3,
+              "x": 144,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/writing_03.png"
+            },
+            {
+              "index": 4,
+              "x": 192,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/writing_04.png"
+            },
+            {
+              "index": 5,
+              "x": 240,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/writing_05.png"
+            },
+            {
+              "index": 6,
+              "x": 288,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/writing_06.png"
+            },
+            {
+              "index": 7,
+              "x": 336,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/writing_07.png"
+            },
+            {
+              "index": 8,
+              "x": 384,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/writing_08.png"
+            },
+            {
+              "index": 9,
+              "x": 432,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/writing_09.png"
+            },
+            {
+              "index": 10,
+              "x": 480,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/writing_10.png"
+            },
+            {
+              "index": 11,
+              "x": 528,
+              "y": 96,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/writing_11.png"
+            }
+          ]
+        },
+        "lookingDown": {
+          "row": 3,
+          "frameCount": 4,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 144,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/lookingDown_00.png"
+            },
+            {
+              "index": 1,
+              "x": 48,
+              "y": 144,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/lookingDown_01.png"
+            },
+            {
+              "index": 2,
+              "x": 96,
+              "y": 144,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/lookingDown_02.png"
+            },
+            {
+              "index": 3,
+              "x": 144,
+              "y": 144,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/lookingDown_03.png"
+            }
+          ]
+        },
+        "lookingUp": {
+          "row": 4,
+          "frameCount": 4,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 192,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/lookingUp_00.png"
+            },
+            {
+              "index": 1,
+              "x": 48,
+              "y": 192,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/lookingUp_01.png"
+            },
+            {
+              "index": 2,
+              "x": 96,
+              "y": 192,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/lookingUp_02.png"
+            },
+            {
+              "index": 3,
+              "x": 144,
+              "y": 192,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/lookingUp_03.png"
+            }
+          ]
+        },
+        "thinking": {
+          "row": 5,
+          "frameCount": 6,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 240,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/thinking_00.png"
+            },
+            {
+              "index": 1,
+              "x": 48,
+              "y": 240,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/thinking_01.png"
+            },
+            {
+              "index": 2,
+              "x": 96,
+              "y": 240,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/thinking_02.png"
+            },
+            {
+              "index": 3,
+              "x": 144,
+              "y": 240,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/thinking_03.png"
+            },
+            {
+              "index": 4,
+              "x": 192,
+              "y": 240,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/thinking_04.png"
+            },
+            {
+              "index": 5,
+              "x": 240,
+              "y": 240,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/thinking_05.png"
+            }
+          ]
+        },
+        "headMovement": {
+          "row": 6,
+          "frameCount": 4,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 288,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/headMovement_00.png"
+            },
+            {
+              "index": 1,
+              "x": 48,
+              "y": 288,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/headMovement_01.png"
+            },
+            {
+              "index": 2,
+              "x": 96,
+              "y": 288,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/headMovement_02.png"
+            },
+            {
+              "index": 3,
+              "x": 144,
+              "y": 288,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/headMovement_03.png"
+            }
+          ]
+        },
+        "sleepy": {
+          "row": 7,
+          "frameCount": 6,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 336,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/sleepy_00.png"
+            },
+            {
+              "index": 1,
+              "x": 48,
+              "y": 336,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/sleepy_01.png"
+            },
+            {
+              "index": 2,
+              "x": 96,
+              "y": 336,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/sleepy_02.png"
+            },
+            {
+              "index": 3,
+              "x": 144,
+              "y": 336,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/sleepy_03.png"
+            },
+            {
+              "index": 4,
+              "x": 192,
+              "y": 336,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/sleepy_04.png"
+            },
+            {
+              "index": 5,
+              "x": 240,
+              "y": 336,
+              "w": 48,
+              "h": 48,
+              "file": "/assets/sprites/frames/girl/sleepy_05.png"
+            }
+          ]
+        }
+      }
+    },
+    "cat_character": {
+      "file": "/assets/sprites/cat_character.png",
+      "sheetWidth": 168,
+      "sheetHeight": 224,
+      "frameWidth": 28,
+      "frameHeight": 28,
+      "gridCols": 6,
+      "gridRows": 8,
+      "totalFrames": 34,
+      "states": {
+        "sittingIdle": {
+          "row": 0,
+          "frameCount": 4,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 0,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/sittingIdle_00.png"
+            },
+            {
+              "index": 1,
+              "x": 28,
+              "y": 0,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/sittingIdle_01.png"
+            },
+            {
+              "index": 2,
+              "x": 56,
+              "y": 0,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/sittingIdle_02.png"
+            },
+            {
+              "index": 3,
+              "x": 84,
+              "y": 0,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/sittingIdle_03.png"
+            }
+          ]
+        },
+        "blinking": {
+          "row": 1,
+          "frameCount": 3,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 28,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/blinking_00.png"
+            },
+            {
+              "index": 1,
+              "x": 28,
+              "y": 28,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/blinking_01.png"
+            },
+            {
+              "index": 2,
+              "x": 56,
+              "y": 28,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/blinking_02.png"
+            }
+          ]
+        },
+        "tailMovement": {
+          "row": 2,
+          "frameCount": 4,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 56,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/tailMovement_00.png"
+            },
+            {
+              "index": 1,
+              "x": 28,
+              "y": 56,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/tailMovement_01.png"
+            },
+            {
+              "index": 2,
+              "x": 56,
+              "y": 56,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/tailMovement_02.png"
+            },
+            {
+              "index": 3,
+              "x": 84,
+              "y": 56,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/tailMovement_03.png"
+            }
+          ]
+        },
+        "lookingAround": {
+          "row": 3,
+          "frameCount": 4,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 84,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/lookingAround_00.png"
+            },
+            {
+              "index": 1,
+              "x": 28,
+              "y": 84,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/lookingAround_01.png"
+            },
+            {
+              "index": 2,
+              "x": 56,
+              "y": 84,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/lookingAround_02.png"
+            },
+            {
+              "index": 3,
+              "x": 84,
+              "y": 84,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/lookingAround_03.png"
+            }
+          ]
+        },
+        "walking": {
+          "row": 4,
+          "frameCount": 6,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 112,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/walking_00.png"
+            },
+            {
+              "index": 1,
+              "x": 28,
+              "y": 112,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/walking_01.png"
+            },
+            {
+              "index": 2,
+              "x": 56,
+              "y": 112,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/walking_02.png"
+            },
+            {
+              "index": 3,
+              "x": 84,
+              "y": 112,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/walking_03.png"
+            },
+            {
+              "index": 4,
+              "x": 112,
+              "y": 112,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/walking_04.png"
+            },
+            {
+              "index": 5,
+              "x": 140,
+              "y": 112,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/walking_05.png"
+            }
+          ]
+        },
+        "stretching": {
+          "row": 5,
+          "frameCount": 4,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 140,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/stretching_00.png"
+            },
+            {
+              "index": 1,
+              "x": 28,
+              "y": 140,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/stretching_01.png"
+            },
+            {
+              "index": 2,
+              "x": 56,
+              "y": 140,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/stretching_02.png"
+            },
+            {
+              "index": 3,
+              "x": 84,
+              "y": 140,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/stretching_03.png"
+            }
+          ]
+        },
+        "sleeping": {
+          "row": 6,
+          "frameCount": 6,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 168,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/sleeping_00.png"
+            },
+            {
+              "index": 1,
+              "x": 28,
+              "y": 168,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/sleeping_01.png"
+            },
+            {
+              "index": 2,
+              "x": 56,
+              "y": 168,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/sleeping_02.png"
+            },
+            {
+              "index": 3,
+              "x": 84,
+              "y": 168,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/sleeping_03.png"
+            },
+            {
+              "index": 4,
+              "x": 112,
+              "y": 168,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/sleeping_04.png"
+            },
+            {
+              "index": 5,
+              "x": 140,
+              "y": 168,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/sleeping_05.png"
+            }
+          ]
+        },
+        "earMovement": {
+          "row": 7,
+          "frameCount": 3,
+          "frames": [
+            {
+              "index": 0,
+              "x": 0,
+              "y": 196,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/earMovement_00.png"
+            },
+            {
+              "index": 1,
+              "x": 28,
+              "y": 196,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/earMovement_01.png"
+            },
+            {
+              "index": 2,
+              "x": 56,
+              "y": 196,
+              "w": 28,
+              "h": 28,
+              "file": "/assets/sprites/frames/cat/earMovement_02.png"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
