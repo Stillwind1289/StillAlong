@@ -7,6 +7,7 @@ import {
   Clock,
   Coffee,
   Download,
+  Info,
   Music,
   Play,
   Settings as SettingsIcon,
@@ -681,6 +682,15 @@ export const StillalongApp: React.FC<StillalongAppProps> = ({ onNavigateRoute })
             {currentSoundLabel.toLowerCase()}
           </span>
         </button>
+        <button
+          type="button"
+          onClick={() => onNavigateRoute('/')}
+          aria-label="About Stillalong"
+          className="rpg-btn-cream flex min-h-[44px] items-center gap-1.5 rounded px-3 py-1 text-xs font-bold"
+        >
+          <Info className="h-3.5 w-3.5 text-[#3E549A]" aria-hidden="true" />
+          <span className="font-gba text-[10px]">about stillalong</span>
+        </button>
       </div>
     </header>
   );
@@ -909,7 +919,15 @@ export const StillalongApp: React.FC<StillalongAppProps> = ({ onNavigateRoute })
               A LITTLE PLACE TO STAY AWHILE.
             </p>
 
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <button
+                type="button"
+                onClick={() => onNavigateRoute('/')}
+                className="rpg-btn-cream flex min-h-[44px] items-center gap-2 rounded px-3.5 py-1.5 text-xs font-bold"
+              >
+                <Info className="h-3.5 w-3.5 text-[#3E549A]" aria-hidden="true" />
+                <span className="font-gba text-[11px]">About Stillalong</span>
+              </button>
               <button
                 type="button"
                 onClick={cycleSoundscape}
@@ -960,6 +978,15 @@ export const StillalongApp: React.FC<StillalongAppProps> = ({ onNavigateRoute })
                 >
                   <span>Sit at Desk</span>
                 </button>
+
+                <button
+                  type="button"
+                  onClick={() => onNavigateRoute('/')}
+                  className="rpg-btn-blue flex min-h-[46px] items-center gap-2 rounded px-4 py-2.5 text-xs font-bold"
+                >
+                  <Info className="h-3.5 w-3.5" aria-hidden="true" />
+                  <span>About Stillalong</span>
+                </button>
               </div>
             </div>
 
@@ -983,9 +1010,10 @@ export const StillalongApp: React.FC<StillalongAppProps> = ({ onNavigateRoute })
             <button
               type="button"
               onClick={() => onNavigateRoute('/')}
-              className="font-gba min-h-[36px] hover:text-[#FFF9EC]"
+              className="rpg-plate flex min-h-[38px] items-center gap-1.5 rounded px-3 py-1 font-gba text-[10px] font-bold"
             >
-              ← ABOUT STILLALONG
+              <Info className="h-3 w-3 text-[#3E549A]" aria-hidden="true" />
+              <span>ABOUT STILLALONG</span>
             </button>
             <span className="font-gba text-[#C9D2F0]">
               {localClockText} · {atmosphere.label.toUpperCase()}

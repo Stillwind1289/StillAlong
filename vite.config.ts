@@ -21,7 +21,7 @@ export default defineConfig(() => {
           theme_color: '#11152A',
           background_color: '#11152A',
           display: 'standalone',
-          start_url: '/app',
+          start_url: '/',
           scope: '/',
           icons: [
             {
@@ -46,7 +46,13 @@ export default defineConfig(() => {
         },
         workbox: {
           globPatterns: ['**/*.{js,css,html,ico,png,svg,woff,woff2}'],
-          navigateFallbackDenylist: [/^\/api\//],
+          navigateFallbackDenylist: [
+            /^\/api\//,
+            /^\/llms.*\.txt$/,
+            /^\/sitemap\.xml$/,
+            /^\/robots\.txt$/,
+            /\.html$/,
+          ],
           maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
           runtimeCaching: [
             {

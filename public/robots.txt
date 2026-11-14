@@ -1,0 +1,35 @@
+User-agent: *
+Allow: /
+
+# OpenAI ChatGPT Search & Training Crawlers
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+# Google Search & Gemini / AI Overviews
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity, Anthropic, Microsoft Bing & Apple
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+Sitemap: /sitemap.xml
+# LLM Discovery Index: /llms.txt and /llms-full.txt

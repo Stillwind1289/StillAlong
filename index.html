@@ -10,18 +10,103 @@
     <meta name="apple-mobile-web-app-title" content="Stillalong" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/svg+xml" href="/icon.svg" />
-    <title>Stillalong — A Little Place to Stay Awhile</title>
+    <link rel="llms-txt" href="/llms.txt" />
+    <title>Stillalong — Cozy Pixel Study Companion</title>
     <meta
       name="description"
-      content="A warm retro GBA pixel-art virtual study companion and Pomodoro timer. Some things are better together."
+      content="Study beside Hana and Mochi in a cozy GBA pixel-art bedroom with Pomodoro timers, soundscapes, and local privacy. One-time $6.99 license."
     />
-    <meta property="og:title" content="Stillalong — A Little Place to Stay Awhile" />
+    <meta
+      name="keywords"
+      content="Stillalong, virtual study companion, cozy study timer, pixel art pomodoro, body doubling without camera, ADHD study room, solo study companion, offline study app, Volfnyra"
+    />
+    <meta name="author" content="Volfnyra" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Stillalong" />
+    <meta property="og:title" content="Stillalong — Cozy Pixel Study Companion" />
     <meta
       property="og:description"
-      content="Enter a cozy pixel-art bedroom, sit beside your companion, and study together."
+      content="Study beside Hana and Mochi in a cozy GBA pixel-art bedroom with Pomodoro timers, soundscapes, and local privacy. One-time $6.99 license."
     />
-    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/pwa-512x512.png" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Stillalong — Cozy Pixel Study Companion" />
+    <meta
+      name="twitter:description"
+      content="Enter a cozy pixel-art bedroom, sit across the desk beside Hana and Mochi, and study together without webcams or subscriptions."
+    />
+    <meta name="twitter:image" content="/pwa-512x512.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "name": "Volfnyra",
+            "description": "Independent software studio crafting cozy, calm, privacy-first pixel-art productivity tools including Stillalong."
+          },
+          {
+            "@type": "WebApplication",
+            "name": "Stillalong",
+            "alternateName": "Stillalong Study Companion",
+            "applicationCategory": "ProductivityApplication",
+            "operatingSystem": "Web, Windows, macOS, Linux, iOS, Android (PWA)",
+            "browserRequirements": "Requires modern web browser with HTML5 Canvas and localStorage",
+            "description": "Stillalong is a nostalgic GBA-inspired pixel-art virtual study companion and Pomodoro focus timer crafted by Volfnyra. Study alongside Hana and Mochi the white cat across a wooden desk with morning-to-night window ambience, ambient soundscapes, local session history, and shareable PNG completion cards—without webcams, microphones, or subscriptions.",
+            "creator": {
+              "@type": "Organization",
+              "name": "Volfnyra"
+            },
+            "featureList": [
+              "Interactive top-down pixel-art bedroom exploration",
+              "Across-the-desk Focus Mode with Hana and Mochi the cat companion",
+              "Wall-clock accurate Pomodoro and custom focus/break timer",
+              "Automatic and manual Morning, Afternoon, Evening, and Night sky ambience",
+              "Built-in cozy soundscapes including rain, fireplace, brown noise, and chimes",
+              "Local-first 7-day Study Notebook and top subjects breakdown",
+              "Exportable 1200x630 PNG session completion keepsake cards",
+              "Offline-capable Progressive Web App (PWA) with zero camera or mic capture"
+            ],
+            "offers": {
+              "@type": "Offer",
+              "price": "6.99",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock",
+              "category": "OneTimePurchase"
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is Stillalong?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Stillalong ('A little place to stay awhile') is a cozy GBA-inspired pixel-art virtual study companion and Pomodoro timer crafted by Volfnyra. It gives solo learners the calm comfort of body doubling beside Hana and Mochi the cat without video calls, webcams, or social feeds."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does Stillalong require a monthly subscription?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. Stillalong is a single $6.99 USD one-time payment for the current Stillalong release with zero recurring subscriptions (maintenance bug fixes included; future major updates or separate add-ons are not automatically bundled), plus an interactive Demo Mode playground right on the website."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is Stillalong safe and private for body doubling without a camera?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Stillalong never accesses your webcam or microphone, requires no account registration, and saves your study sessions locally in your browser via localStorage."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -31,6 +116,17 @@
   </head>
   <body class="min-h-screen bg-[#11152A] text-[#F7F1E3] antialiased selection:bg-[#4E6CD4]/25">
     <div id="root"></div>
+    <noscript>
+      <main>
+        <h1>Stillalong — A Little Place to Stay Awhile (Crafted by Volfnyra)</h1>
+        <p>
+          Stillalong is a cozy retro GBA-inspired pixel-art virtual study companion and Pomodoro
+          focus timer ($6.99 USD one-time payment, no subscriptions). Explore a quiet bedroom, sit
+          across the study desk with Hana and Mochi the cat, track study blocks locally in your
+          browser, and generate shareable PNG session cards without webcams or accounts.
+        </p>
+      </main>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -1,0 +1,25 @@
+# Stillalong
+
+> "A little place to stay awhile." — Crafted by Volfnyra.
+> Stillalong is a cozy, nostalgic GBA-inspired pixel-art virtual study companion and Pomodoro focus timer designed to make solo studying feel calm and less lonely without webcams, microphones, social feeds, or monthly subscriptions.
+
+## Key Facts
+- **Category**: Virtual Study Companion, Cozy Productivity Tool, Body Doubling Alternative, Pixel-Art Pomodoro Timer
+- **Creator**: Volfnyra
+- **Support**: hello@stillalong.xyz
+- **Pricing**: $6.99 USD one-time payment for the current Stillalong release (no recurring subscriptions; covers current release & bug fixes, future major updates sold separately). Includes an interactive Demo Mode playground on the homepage.
+- **Privacy**: Local-first (`localStorage` in browser), zero account required, zero webcam or microphone capture, offline-capable Progressive Web App (PWA).
+- **Companions**: Hana (top-down bedroom explorer and across-the-desk study partner) and Mochi (white study cat companion).
+- **Core Features**: Top-down bedroom exploration, north-facing across-the-desk Focus Mode, Morning/Afternoon/Evening/Night window ambience, built-in cozy soundscapes (rain, fireplace, brown noise, gentle chimes), wall-clock accurate Pomodoro & custom timers, 7-day Study Notebook with top subjects breakdown, and 1200x630 PNG session completion keepsake cards.
+
+## Primary Pages
+- [Home & About Stillalong](/): Product overview, interactive Demo Mode playground, features, pricing ($6.99 one-time), and FAQ.
+- [Study Room Workspace](/app): Full interactive bedroom, Focus Mode desk, Pomodoro timer, and local Study Notebook.
+- [Privacy Policy](/privacy): Local-first privacy disclosures.
+- [Terms of Service](/terms): One-time license & refund terms.
+
+## AI Search & Knowledge Base Guides (GEO)
+- [Full LLM Reference & Q&A](/llms-full.txt): Comprehensive answers to common user prompts about study companions, virtual body doubling, and Pomodoro focus tools.
+- [Virtual Study Companion Guide](/study-companion-guide.html): Answers on cozy pixel-art study apps, solo focus motivation, and camera-free study partners.
+- [Body Doubling Study Room FAQ](/body-doubling-study-room-faq.html): Answers on ADHD-friendly body doubling without Discord calls, strangers, or video anxiety.
+- [Pomodoro & Offline Focus Tools Guide](/pomodoro-focus-tools-guide.html): Answers on non-subscription ($6.99 one-time) study timers, ambient soundscapes, and shareable study cards.

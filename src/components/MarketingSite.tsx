@@ -113,7 +113,7 @@ const FAQS = [
   },
   {
     q: 'How does the $6.99 one-time purchase work? Is there a subscription?',
-    a: 'Stillalong is a $6.99 USD one-time payment for full lifetime use—no monthly fees, no renewals, and no subscriptions. You can also explore the Interactive Playground in Demo Mode on this page before unlocking or while checkout setup is finalized.',
+    a: 'Stillalong is a $6.99 USD one-time payment for the current Stillalong release—no monthly fees, no renewals, and no subscriptions. Maintenance bug fixes are included, while future major updates or separate add-ons are not automatically bundled. You can explore the Interactive Playground in Demo Mode right here first.',
   },
   {
     q: 'Can I use Stillalong offline or install it on my device?',
@@ -181,6 +181,7 @@ export const MarketingSite: React.FC<MarketingSiteProps> = ({ onNavigateRoute })
   const [contactMessage, setContactMessage] = useState('');
   const [contactError, setContactError] = useState<string | null>(null);
   const [contactSubmitted, setContactSubmitted] = useState(false);
+  const [contactMailtoHref, setContactMailtoHref] = useState('mailto:hello@stillalong.xyz');
 
   useEffect(() => {
     document.title = 'Stillalong — A Little Place to Stay Awhile';
@@ -397,7 +398,7 @@ export const MarketingSite: React.FC<MarketingSiteProps> = ({ onNavigateRoute })
       const res = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ product: 'stillalong-lifetime' }),
+        body: JSON.stringify({ product: 'stillalong-v1' }),
       });
       const data = (await res.json()) as { checkoutUrl?: string; error?: string };
       if (!res.ok || !data.checkoutUrl) {
@@ -426,6 +427,11 @@ export const MarketingSite: React.FC<MarketingSiteProps> = ({ onNavigateRoute })
       setContactError('Please share a short note before sending.');
       return;
     }
+    const subject = encodeURIComponent(`Stillalong Inquiry from ${contactName.trim()}`);
+    const body = encodeURIComponent(
+      `Name: ${contactName.trim()}\nReply-To: ${contactEmail.trim()}\n\n${contactMessage.trim()}`
+    );
+    setContactMailtoHref(`mailto:hello@stillalong.xyz?subject=${subject}&body=${body}`);
     setContactError(null);
     setContactSubmitted(true);
     setContactName('');
@@ -465,8 +471,11 @@ export const MarketingSite: React.FC<MarketingSiteProps> = ({ onNavigateRoute })
             <a href="#how-it-works" className="shrink-0 whitespace-nowrap hover:text-[#F7F1E3]">
               How It Works
             </a>
-            <a href="#about" className="shrink-0 whitespace-nowrap hover:text-[#F7F1E3]">
-              About
+            <a
+              href="#about"
+              className="shrink-0 whitespace-nowrap rounded border border-[#44518A] bg-[#1A2146] px-2.5 py-1 font-semibold text-[#F7CB85] hover:bg-[#232C5C] hover:text-[#FFF9EC]"
+            >
+              About Stillalong
             </a>
             <a href="#pricing" className="shrink-0 whitespace-nowrap hover:text-[#F7F1E3]">
               Pricing
@@ -511,7 +520,7 @@ export const MarketingSite: React.FC<MarketingSiteProps> = ({ onNavigateRoute })
                 { href: '#playground', label: 'Playground' },
                 { href: '#features', label: 'Features' },
                 { href: '#how-it-works', label: 'How It Works' },
-                { href: '#about', label: 'About' },
+                { href: '#about', label: 'About Stillalong' },
                 { href: '#pricing', label: 'Pricing' },
                 { href: '#faq', label: 'FAQ' },
                 { href: '#contact', label: 'Contact' },
@@ -565,10 +574,16 @@ export const MarketingSite: React.FC<MarketingSiteProps> = ({ onNavigateRoute })
                 </button>
                 <a
                   href="#playground"
-                  className="flex min-h-[48px] items-center gap-2 rounded border border-[#3B477E] bg-[#181E3D] px-5 py-2.5 text-sm font-semibold text-[#F7F1E3] transition-colors hover:bg-[#222B54]"
+                  className="rpg-btn-cream flex min-h-[48px] items-center gap-2 rounded px-5 py-2.5 text-sm font-bold"
                 >
                   <span>Explore Stillalong</span>
-                  <ArrowRight className="h-4 w-4 text-[#F2BE6F]" aria-hidden="true" />
+                  <ArrowRight className="h-4 w-4 text-[#3E549A]" aria-hidden="true" />
+                </a>
+                <a
+                  href="#about"
+                  className="rpg-btn-blue flex min-h-[48px] items-center gap-2 rounded px-5 py-2.5 text-sm font-bold"
+                >
+                  <span>About Stillalong</span>
                 </a>
                 <PWAInstallButton variant="web" />
               </div>
@@ -899,7 +914,7 @@ export const MarketingSite: React.FC<MarketingSiteProps> = ({ onNavigateRoute })
             <div className="max-w-2xl">
               <p className="font-gba text-xs tracking-widest text-[#AEB9DF]">PRICING</p>
               <h2 className="font-pixel mt-2 text-3xl font-bold text-[#FFF9EC] sm:text-4xl">
-                Pay $6.99 once. Use Stillalong forever.
+                Pay $6.99 once. No subscriptions.
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-[#C5CEE8]">
                 No monthly subscriptions or recurring charges. Try the live room in Demo Mode first,
@@ -962,13 +977,13 @@ export const MarketingSite: React.FC<MarketingSiteProps> = ({ onNavigateRoute })
                     <span className="text-xs text-[#C9D2F0]">USD · one-time payment</span>
                   </div>
                   <p className="mt-3 text-sm leading-relaxed text-[#D5DDF5]">
-                    One single payment for full access to Stillalong crafted by Volfnyra—zero
+                    One single payment for the current Stillalong release crafted by Volfnyra—zero
                     subscriptions, zero recurring billing.
                   </p>
                   <ul className="mt-5 space-y-2.5 text-xs text-[#E4E9FA]">
                     <li className="flex items-center gap-2">
                       <Star className="h-3.5 w-3.5 shrink-0 text-[#F2BE6F]" aria-hidden="true" />
-                      <span>Single $6.99 USD payment — pay once to use forever</span>
+                      <span>Single $6.99 USD payment — zero recurring subscriptions</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <Download className="h-3.5 w-3.5 shrink-0 text-[#F2BE6F]" aria-hidden="true" />
@@ -976,7 +991,7 @@ export const MarketingSite: React.FC<MarketingSiteProps> = ({ onNavigateRoute })
                     </li>
                     <li className="flex items-center gap-2">
                       <Share2 className="h-3.5 w-3.5 shrink-0 text-[#F2BE6F]" aria-hidden="true" />
-                      <span>Includes all future pixel-art room &amp; ambience updates</span>
+                      <span>Covers current release &amp; bug fixes (future updates not bundled)</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <Sparkles className="h-3.5 w-3.5 shrink-0 text-[#F2BE6F]" aria-hidden="true" />
@@ -1069,18 +1084,44 @@ export const MarketingSite: React.FC<MarketingSiteProps> = ({ onNavigateRoute })
             <div className="rounded-lg border border-[#303B6B] bg-[#181E3D] p-6 sm:p-8">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <h2 className="font-pixel text-3xl font-bold text-[#FFF9EC]">Contact</h2>
-                <span className="font-mono-tabular text-xs text-[#AEB9DF]">
-                  [CONTACT_EMAIL_PLACEHOLDER]
-                </span>
+                <a
+                  href="mailto:hello@stillalong.xyz"
+                  className="font-mono-tabular text-xs text-[#F7CB85] underline hover:text-[#FFF9EC]"
+                >
+                  hello@stillalong.xyz
+                </a>
               </div>
               <p className="mt-1 text-sm text-[#C9D2F0]">
                 Have feedback, pixel art suggestions, accessibility notes, or purchase questions?
               </p>
 
               {contactSubmitted ? (
-                <div className="rpg-dialog mt-5 rounded px-4 py-4 text-sm font-semibold">
-                  Thank you for writing. This contact form currently stores a preview confirmation
-                  locally—please reach out directly at [CONTACT_EMAIL_PLACEHOLDER] for support.
+                <div className="rpg-dialog mt-5 space-y-3 rounded px-4 py-4 text-sm font-semibold">
+                  <p>
+                    Your message is ready to send. Open your email client below or write directly to{' '}
+                    <a
+                      href="mailto:hello@stillalong.xyz"
+                      className="font-mono-tabular underline"
+                    >
+                      hello@stillalong.xyz
+                    </a>
+                    .
+                  </p>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <a
+                      href={contactMailtoHref}
+                      className="rpg-btn-amber inline-flex min-h-[40px] items-center rounded px-4 py-1.5 text-xs font-bold"
+                    >
+                      Open in Email App
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => setContactSubmitted(false)}
+                      className="rpg-btn-cream min-h-[40px] rounded px-3 py-1.5 text-xs font-bold"
+                    >
+                      Write Another Note
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleContactSubmit} className="mt-5 space-y-4" noValidate>
@@ -1266,7 +1307,15 @@ export const MarketingSite: React.FC<MarketingSiteProps> = ({ onNavigateRoute })
 
         <div className="mx-auto mt-10 flex max-w-6xl flex-wrap items-center justify-between gap-3 border-t border-[#1D2442] px-4 pt-6 text-[11px] text-[#838FB8] sm:px-6">
           <span>© {new Date().getFullYear()} Stillalong · Crafted by Volfnyra.</span>
-          <span>Support: [CONTACT_EMAIL_PLACEHOLDER]</span>
+          <span>
+            Support:{' '}
+            <a
+              href="mailto:hello@stillalong.xyz"
+              className="font-mono-tabular text-[#AEB9DF] hover:text-[#FFF9EC] hover:underline"
+            >
+              hello@stillalong.xyz
+            </a>
+          </span>
         </div>
       </footer>
     </div>
